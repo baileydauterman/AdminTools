@@ -1,4 +1,23 @@
 function Invoke-FastestPingInTheWest(){
+    <#
+    .Synopsis
+    Extremely fast was to ping hundreds of machines at a time
+
+    .Description
+    Using runspaces and a runspace pool we are able to create an extremely fast was to ping machines.
+    A workflow with a foreach takes over 10x longer to ping 200ish machines.
+        Author: Bailey Dauterman
+
+    .Example
+    PS> $computers = Import-Csv .\a_lot_of_computers.csv
+    PS> Invoke-FastestPingInTheWest -ComputerName $computers
+
+    Name        Connection      WSMan
+    -----       -----------     -----
+    computer1   True            True
+    server2     False           False
+    computer4   True            False
+    #>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]
