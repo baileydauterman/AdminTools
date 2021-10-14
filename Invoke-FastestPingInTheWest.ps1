@@ -12,19 +12,42 @@ function Invoke-FastestPingInTheWest(){
     PS> $computers = Import-Csv .\a_lot_of_computers.csv
     PS> Invoke-FastestPingInTheWest -ComputerName $computers
 
+    Name        Connection  
+    -----       ----------- 
+    computer1   True       
+    server2     False       
+    computer4   True        
+
+    .Example
+    PS> Invoke-FastestPingInTheWest -ComputerName $computers -TestWSman $true
+
     Name        Connection      WSMan
     -----       -----------     -----
     computer1   True            True
     server2     False           False
     computer4   True            False
+
+    .Example
+    PS> Invoke-FastestPingInTheWest -ComputerName $computers -TestWSman $true -MaxPoolSize 200
+
+    Name        Connection      WSMan
+    -----       -----------     -----
+    computer1   True            True
+    server2     False           False
+    computer4   True            False
+
     #>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]
-        $ComputerName
+        $ComputerName,
+        [Parameter(Mandatory=$false)]
+        $TestWSman=$false,
+        [Parameter(Mandatory=$false)]
+        $MaxPoolSize = 100
     )
 
-    $runspacePool = [runspacefactory]::CreateRunspacePool(1,100)
+    $runspacePool = [runspacefactory]::CreateRunspacePool(1,$MaxPoolSize)
     $runspacePool.Open()
 
     $runspaces = foreach($computer in $ComputerName) {
@@ -32,8 +55,10 @@ function Invoke-FastestPingInTheWest(){
             param($Computer)
 
             $ping = Test-Connection -ComputerName $Computer -Count 1 -Quiet
-            if($ping) {
+            if($ping -and $TestWSman) {
                 $wsman = [bool](Test-WSMan -ComputerName $Computer -ErrorAction SilentlyContinue)
+            } elseif(!($TestWSman)) {
+                $wsman = $null
             } else {
                 $wsman = $false
             }
@@ -63,6 +88,8 @@ function Invoke-FastestPingInTheWest(){
     $runspaces | ForEach-Object {
         $output += $_.Instance.EndInvoke($_.IAsyncResult)
     }
+
+    $runspacePool.Close()
 
     return $output
 }
