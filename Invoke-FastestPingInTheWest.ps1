@@ -1,7 +1,7 @@
 function Invoke-FastestPingInTheWest(){
     <#
     .Synopsis
-    Extremely fast was to ping hundreds of machines at a time
+    Extremely fast way to ping hundreds of machines at a time
 
     .Description
     Using runspaces and a runspace pool we are able to create an extremely fast was to ping machines.
