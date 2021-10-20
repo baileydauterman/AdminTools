@@ -19,30 +19,19 @@ function Invoke-FastestPingInTheWest(){
     computer4   True        
 
     .Example
-    PS> Invoke-FastestPingInTheWest -ComputerName $computers -TestWSman $true
+    PS> Invoke-FastestPingInTheWest -ComputerName $computers -MaxPoolSize $computers.Count
 
-    Name        Connection      WSMan
-    -----       -----------     -----
-    computer1   True            True
-    server2     False           False
-    computer4   True            False
-
-    .Example
-    PS> Invoke-FastestPingInTheWest -ComputerName $computers -TestWSman $true -MaxPoolSize 200
-
-    Name        Connection      WSMan
-    -----       -----------     -----
-    computer1   True            True
-    server2     False           False
-    computer4   True            False
+    Name        Connection      
+    -----       -----------     
+    computer1   True            
+    server2     False           
+    computer4   True            
 
     #>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]
         $ComputerName,
-        [Parameter(Mandatory=$false)]
-        $TestWSman=$false,
         [Parameter(Mandatory=$false)]
         $MaxPoolSize = 100
     )
@@ -54,19 +43,9 @@ function Invoke-FastestPingInTheWest(){
         $instance = [powershell]::Create().AddScript({
             param($Computer)
 
-            $ping = Test-Connection -ComputerName $Computer -Count 1 -Quiet
-            if($ping -and $TestWSman) {
-                $wsman = [bool](Test-WSMan -ComputerName $Computer -ErrorAction SilentlyContinue)
-            } elseif(!($TestWSman)) {
-                $wsman = $null
-            } else {
-                $wsman = $false
-            }
-
-            New-Object PSObject -Property @{
+            [PSCustomObject]@{
                 Name = $Computer
-                Connection = $ping
-                WSMan = $wsman
+                Connection = Test-Connection -ComputerName $Computer -Count 1 -Quiet -ErrorAction SilentlyContinue
             }
         }).AddParameter('Computer', $computer)
 
