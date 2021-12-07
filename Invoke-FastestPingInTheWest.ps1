@@ -6,7 +6,7 @@ function Invoke-FastestPingInTheWest(){
     .Description
     Using runspaces and a runspace pool we are able to create an extremely fast was to ping machines.
     Comparison (625 machines on the same network):
-        Using Test-Connection           : tbd
+        Using Test-Connection           : 50:02.140
         Workflow with ForEach -Parallel : 10:17.312
         Using this function             : 00:21.058
         
