@@ -5,8 +5,12 @@ function Invoke-FastestPingInTheWest(){
 
     .Description
     Using runspaces and a runspace pool we are able to create an extremely fast was to ping machines.
-    A workflow with a foreach takes over 10x longer to ping 200ish machines.
-        Author: Bailey Dauterman
+    Comparison (625 machines on the same network):
+        Using Test-Connection           : tbd
+        Workflow with ForEach -Parallel : 10:17.312
+        Using this function             : 00:21.058
+        
+    Author: Bailey Dauterman
 
     .Example
     PS> $computers = Import-Csv .\a_lot_of_computers.csv
