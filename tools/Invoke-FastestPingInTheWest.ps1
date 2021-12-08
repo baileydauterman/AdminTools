@@ -37,7 +37,9 @@ function Invoke-FastestPingInTheWest(){
         [Parameter(Mandatory=$true)]
         $ComputerName,
         [Parameter(Mandatory=$false)]
-        $MaxPoolSize = 100
+        $MaxPoolSize = 100,
+        [Parameter(Mandatory=$false)]
+        $AddMembers
     )
 
     $runspacePool = [runspacefactory]::CreateRunspacePool(1,$MaxPoolSize)
@@ -45,13 +47,24 @@ function Invoke-FastestPingInTheWest(){
 
     $runspaces = foreach($computer in $ComputerName) {
         $instance = [powershell]::Create().AddScript({
-            param($Computer)
+            param(
+                $Computer,
+                $AddMembers
+            )
 
-            [PSCustomObject]@{
+            $outputObj = [PSCustomObject]@{
                 Name = $Computer
                 Connection = Test-Connection -ComputerName $Computer -Count 1 -Quiet -ErrorAction SilentlyContinue
             }
-        }).AddParameter('Computer', $computer)
+
+            if($AddMembers) {
+                foreach($m in $AddMembers) {
+                    $outputObj | Add-Member -NotePropertyName $m -NotePropertyValue $null
+                }
+            }
+
+            $outputObj
+        }).AddParameter('Computer', $computer).AddParameter('AddMembers', $AddMembers)
 
         $instance.RunspacePool = $runspacePool
 
@@ -66,13 +79,9 @@ function Invoke-FastestPingInTheWest(){
         Start-Sleep -Milliseconds 50
     }
 
-    $output = @()
-
     $runspaces | ForEach-Object {
-        $output += $_.Instance.EndInvoke($_.IAsyncResult)
+        $_.Instance.EndInvoke($_.IAsyncResult)
     }
 
     $runspacePool.Close()
-
-    return $output
 }
