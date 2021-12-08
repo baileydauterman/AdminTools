@@ -29,6 +29,15 @@ function Invoke-FastestPingInTheWest(){
     -----       -----------     
     computer1   True            
     server2     False           
+    computer4   True    
+
+    .Example
+    PS> Invoke-FastestPingInTheWest -ComputerName $computers -AddMembers "VarToTrack"
+
+    Name        Connection    VarToTrack  
+    -----       -----------  -----------
+    computer1   True            
+    server2     False           
     computer4   True            
 
     #>
