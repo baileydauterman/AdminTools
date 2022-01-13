@@ -1,4 +1,4 @@
-function Invoke-FastestPingInTheWest(){
+function Test-ConnectionRunspace(){
     <#
     .Synopsis
     Extremely fast way to ping hundreds of machines at a time
