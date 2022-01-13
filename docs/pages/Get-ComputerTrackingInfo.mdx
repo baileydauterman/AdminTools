@@ -1,0 +1,27 @@
+---
+name: Get-ComputerTrackingInfo
+route: /gcti
+menu: Scripts
+---
+
+# Get-ComputerTrackingInfo
+
+Gets information needed to track down a machine on the network
+
+## Syntax
+```
+Get-ComputerTrackingInfo
+    [[-Computername] string[]]
+```
+
+## Examples
+
+Returns path stats for C:\
+```
+Get-ComputerTrackingInfo
+```
+
+for specified dir
+```
+Get-ComputerTrackingInfo -Path C:\Users
+```
