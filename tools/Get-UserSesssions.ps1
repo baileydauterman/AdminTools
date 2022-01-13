@@ -1,4 +1,4 @@
-function Get-RemoteUser($ComputerName=$null) {
+function Get-UserSessions($ComputerName=$null) {
     if($null -eq $ComputerName) {
         [PSCustomObject](query user) -replace "\s{2,22}", "," | ConvertFrom-Csv
     } else {

@@ -1,4 +1,4 @@
-function Get-InstalledSoftware([Parameter(Mandatory=$true)]$ComputerName) {
+function Get-InstalledSoftwareRunspace([Parameter(Mandatory=$true)]$ComputerName) {
     $runspacePool = [runspacefactory]::CreateRunspacePool(1,100)
     runspacePool.Open()
 
