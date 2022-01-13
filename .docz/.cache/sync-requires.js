@@ -5,7 +5,6 @@ const preferDefault = m => (m && m.default) || m
 
 
 exports.components = {
-  "component---cache-dev-404-page-js": hot(preferDefault(require("C:\\Users\\daute\\source\\repos\\AdminTools\\.docz\\.cache\\dev-404-page.js"))),
   "component---pages-get-computer-tracking-info-mdx": hot(preferDefault(require("C:\\Users\\daute\\source\\repos\\AdminTools\\pages\\Get-ComputerTrackingInfo.mdx"))),
   "component---pages-get-computer-uptime-mdx": hot(preferDefault(require("C:\\Users\\daute\\source\\repos\\AdminTools\\pages\\Get-ComputerUptime.mdx"))),
   "component---pages-get-directory-last-write-time-mdx": hot(preferDefault(require("C:\\Users\\daute\\source\\repos\\AdminTools\\pages\\Get-DirectoryLastWriteTime.mdx"))),

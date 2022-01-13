@@ -34,7 +34,7 @@
           "name": "C:\\Users\\daute\\source\\repos\\AdminTools\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
-            "autoLabel": true,
+            "autoLabel": false,
             "plugins": [],
             "labelFormat": "[local]",
             "cssPropOptimization": true
@@ -89,7 +89,7 @@
           "name": "C:\\Users\\daute\\source\\repos\\AdminTools\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
-            "autoLabel": true,
+            "autoLabel": false,
             "plugins": [],
             "labelFormat": "[local]",
             "cssPropOptimization": true
@@ -144,7 +144,7 @@
           "name": "C:\\Users\\daute\\source\\repos\\AdminTools\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
-            "autoLabel": true,
+            "autoLabel": false,
             "plugins": [],
             "labelFormat": "[local]",
             "cssPropOptimization": true
@@ -199,7 +199,7 @@
           "name": "C:\\Users\\daute\\source\\repos\\AdminTools\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
-            "autoLabel": true,
+            "autoLabel": false,
             "plugins": [],
             "labelFormat": "[local]",
             "cssPropOptimization": true
