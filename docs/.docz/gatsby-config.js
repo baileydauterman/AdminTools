@@ -16,7 +16,7 @@ if (hasGatsbyConfig) {
 }
 
 const config = {
-  pathPrefix: '/',
+  pathPrefix: '/docz',
 
   siteMetadata: {
     title: 'Docs',
@@ -47,7 +47,7 @@ const config = {
         open: null,
         'open-browser': null,
         root: 'C:\\Users\\daute\\source\\repos\\AdminTools\\docs\\.docz',
-        base: '/',
+        base: '/docz',
         source: './',
         'gatsby-root': null,
         files: '**/*.{md,markdown,mdx}',
