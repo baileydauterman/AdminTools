@@ -122,7 +122,7 @@
         <br>
         <p>To load this module into memory on PowerShell startup run:</p>
         <pre>
-            <code>
+            <code class="language-powershell">
                 if(-not (Test-Path $profile)) { New-Item -Type file -Path $profile -Force }
                 Add-Content -Path $profile -Value 'Import-Module "path\AdminTools\0.1.1\AdminTools.psm1"'
             </code>
@@ -135,7 +135,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 #if machine is online 
                 Get-ComputerTrackingInfo $ComputerName
 
@@ -156,7 +156,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 #if no machine is passed get local machine
                 Get-ComputerUptime 
 
@@ -171,7 +171,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 Get-DirectoryLastWriteTime -Path \\path\to\dir -Recurse
                 # or
                 Get-DirectoryLastWriteTime -Path \\path\to\dir 
@@ -184,7 +184,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 Get-ErrorPrinterJobs -ComputerName printer-server
             </code>
         </pre>
@@ -195,7 +195,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 # retrieve software inventory 
                 $outputs = Get-InstalledSoftware -ComputerName $computers
 
@@ -217,7 +217,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell" class="language-powershell">
                 Get-LightweightResourcesMonitor
             </code>
         </pre>
@@ -228,7 +228,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 Get-MacAddress -ComputerName computer01
                 #returns 00:00:00:00:00
 
@@ -243,7 +243,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 Get-RemoteUsers -ComputerName computer01
             </code>
         </pre>
@@ -254,7 +254,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 Get-UserFoldersToDelete -ComputerName computer01 -Days 120
             </code>
         </pre>
@@ -265,7 +265,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 Install-McAfee computer01
             </code>
         </pre>
@@ -276,7 +276,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 #if the file is saved correctly in the above directory, you can get the ones for today 
                 $computers = Format-ComputersWeekly -Today 
                 $restartResults = Restart-ComputersWeekly $computers -Hours 5
@@ -293,7 +293,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 $restartResults = Restart-NetworkMachine $computers -Hours 5 <br>
             </code>
         </pre>
@@ -304,7 +304,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
@@ -322,7 +322,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
@@ -340,7 +340,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
@@ -358,7 +358,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
@@ -376,7 +376,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
@@ -394,7 +394,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code>
+            <code class="language-powershell">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
