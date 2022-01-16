@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=".\docs\main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+    <title>AdminTools</title>
+</head>
+<body>
+    <!-- div for menu bar -->
+    <div class="wrapper">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="#home">
+                        <span><h2>AdminTools Home</h2></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#gcti">
+                        <span>Get-ComputerTrackingInfo</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#gcu">
+                        <span>Get-ComputerUptime</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#gdlwt">
+                        <span>Get-DirectoryLastWriteTime</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#gep">
+                        <span>Get-ErrorPrinterJobs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#gis">
+                        <span>Get-InstalledSoftware</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#glrm">
+                        <span>Get-LightweightResourcesMonitor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#gma">
+                        <span>Get-MacAddress</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#gru">
+                        <span>Get-RemoteUsers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#guftd">
+                        <span>Get-UserFoldersToDelete</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#im">
+                        <span>Install-McAfee</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#rcw">
+                        <span>Restart-ComputersWeekly</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#rnm">
+                        <span>Restart-NetworkMachine</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#sca">
+                        <span>Start-SCCMActions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#sa">
+                        <span>Stay-Awake</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#tcr">
+                        <span>Test-ConnectionRunspace</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#tmr">
+                        <span>Test-MachineRebooted</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#install">
+                        <span>Installation</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#update">
+                        <span>Updating Project</span>
+                    </a>
+                </li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main">
+        <h1 id="home">About</h1>
+        <p>This project was created to be an easier way for System Administrators to perform actions on remote machines.</p>
+        <br>
+        <p>To load this module into memory on PowerShell startup run:</p>
+        <pre>
+            <code>
+                if(-not (Test-Path $profile)) { New-Item -Type file -Path $profile -Force }
+                Add-Content -Path $profile -Value 'Import-Module "path\AdminTools\0.1.1\AdminTools.psm1"'
+            </code>
+        </pre>
+        <hr>
+
+
+        <h1 id="gcti">Get-ComputerTrackingInfo</h1>
+        <p>When you only have a machine name or IP address use this command to get more information about a machine. Returns the following: ComputerName, Uptime, MACAddress, SerialNumber, IPAddress, IPv4Gateway, Users</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                #if machine is online 
+                Get-ComputerTrackingInfo $ComputerName
+
+                #returns
+                ComputerName : Computer Name   
+                Uptime       : Uptime of Remote Machine    
+                MACAddress   : Mac of Remote machine
+                SerialNumber : Serial Number of Remote Machine
+                IPAddress    : IPv4 of remote machine
+                IPv4Gateway  : Switch machine is plugged into 
+                Users        : [PSCustomObject] of logged in users
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="gcu">Get-ComputerUptime</h1>
+        <p>Retrieves the computer uptime for a target machine, grabs local uptime if machine is not specified.</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                #if no machine is passed get local machine
+                Get-ComputerUptime 
+
+                #get remote machine uptime
+                Get-ComputerUptime RemoteMachine
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="gdlwt">Get-DirectoryLastWriteTime</h1>
+        <p>Pass a directory and specify is you want to recurse through the directory or not. Returns the last time a file was written to in this directory.</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                Get-DirectoryLastWriteTime -Path \\path\to\dir -Recurse
+                # or
+                Get-DirectoryLastWriteTime -Path \\path\to\dir 
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="gep">Get-ErrorPrinterJobs</h1>
+        <p>Takes the name of the printer server and returns the printers and print jobs that are in error states.</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                Get-ErrorPrinterJobs -ComputerName printer-server
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="gis">Get-InstalledSoftware</h1>
+        <p>Takes a computer name or a list of computer names and returns a PSCustomObject for each computer and all the installed software.</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                # retrieve software inventory 
+                $outputs = Get-InstalledSoftware -ComputerName $computers
+
+                # write software to a specified directory 
+                foreach($o in $outputs) {
+                    if($o.Connection -and ($o.SoftwareCount -ne 1)) {
+                        New-Item "\\directory\$($o.Name).csv" -ItemType File
+                        $o.Softwares | Export-Csv "directory\$($o.Name).csv" -NoTypeInformation
+                    } else {
+                        New-Item "\\directory\$($o.Name) - COULD NOT CONNECT TO.txt" -ItemType File
+                    }
+                }
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="glrm">Get-LightweightResourcesMonitor</h1>
+        <p>In console resource monitor, not really useful for anything but a fun little project.</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                Get-LightweightResourcesMonitor
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="gma">Get-MacAddress</h1>
+        <p>Get the mac address of local or remote machine.</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                Get-MacAddress -ComputerName computer01
+                #returns 00:00:00:00:00
+
+                Get-MacAddress
+                #returns 01:01:01:01:01
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="gru">Get-RemoteUsers</h1>
+        <p>Uses command line built in query user function and outputs to a PSCustomObject that can be iterated over.</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                Get-RemoteUsers -ComputerName computer01
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="guftd">Get-UserFoldersToDelete</h1>
+        <p>Uses <a href="#gdlwt">Get-DirectoryLastWriteTime</a> to enumerate over user folders determining which users haven't updated any files in the specified amount of days. Returns the user folders that can be deleted.</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                Get-UserFoldersToDelete -ComputerName computer01 -Days 120
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="im">Install-McAfee</h1>
+        <p>Not sure if this works 100%. Supposed to copy data to remote machine and run installers for McAfee.</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                Install-McAfee computer01
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="rcw">Restart-ComputersWeekly</h1>
+        <p>Sends the restart command to a group of computers. Specificially works with <a href="#fcw">Format-ComputersWeekly</a>. </p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                #if the file is saved correctly in the above directory, you can get the ones for today 
+                $computers = Format-ComputersWeekly -Today 
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5
+                
+                #if you want to specify a CSV 
+                $computers = Format-ComputersWeekly -Path "\\path\to\csv\" 
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="rnm">Restart-NetworkMachine</h1>
+        <p>Almost exactly like <a href="#rcw">Restart-ComputersWeekly</a>, but does not include handling for the <a href="#fcw">Format-ComputersWeekly</a></p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                $restartResults = Restart-NetworkMachine $computers -Hours 5 <br>
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="sca">Start-SCCMActions</h1>
+        <p>WIP</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                <br>
+                #if the file is saved correctly in the above directory, you can get the ones for today <br>
+                $computers = Format-ComputersWeekly -Today <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+                <br>
+                #if you want to specify a CSV <br>
+                $computers = Format-ComputersWeekly -Path "\\path\to\csv\" <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="sa">Stay-Awake</h1>
+        <p>WIP</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                <br>
+                #if the file is saved correctly in the above directory, you can get the ones for today <br>
+                $computers = Format-ComputersWeekly -Today <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+                <br>
+                #if you want to specify a CSV <br>
+                $computers = Format-ComputersWeekly -Path "\\path\to\csv\" <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="tcr">Test-ConnectionRunspace</h1>
+        <p>WIP</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                <br>
+                #if the file is saved correctly in the above directory, you can get the ones for today <br>
+                $computers = Format-ComputersWeekly -Today <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+                <br>
+                #if you want to specify a CSV <br>
+                $computers = Format-ComputersWeekly -Path "\\path\to\csv\" <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="tmr">Test-MachineRebooted</h1>
+        <p>WIP</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                <br>
+                #if the file is saved correctly in the above directory, you can get the ones for today <br>
+                $computers = Format-ComputersWeekly -Today <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+                <br>
+                #if you want to specify a CSV <br>
+                $computers = Format-ComputersWeekly -Path "\\path\to\csv\" <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="install">Installation</h1>
+        <p>WIP</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                <br>
+                #if the file is saved correctly in the above directory, you can get the ones for today <br>
+                $computers = Format-ComputersWeekly -Today <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+                <br>
+                #if you want to specify a CSV <br>
+                $computers = Format-ComputersWeekly -Path "\\path\to\csv\" <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+            </code>
+        </pre>
+        <hr>
+
+        <h1 id="update">Update Project</h1>
+        <p>WIP</p>
+        <br>
+        <h4>Usage</h4>
+        <pre>
+            <code>
+                <br>
+                #if the file is saved correctly in the above directory, you can get the ones for today <br>
+                $computers = Format-ComputersWeekly -Today <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+                <br>
+                #if you want to specify a CSV <br>
+                $computers = Format-ComputersWeekly -Path "\\path\to\csv\" <br>
+                $restartResults = Restart-ComputersWeekly $computers -Hours 5 <br>
+            </code>
+        </pre>
+        <hr>
+
+
+
+    </div>
+</body>
+</html>
