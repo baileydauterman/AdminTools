@@ -6,12 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href=".\main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/powershell.min.js" integrity="sha512-QVuQje4uppKj3rOyxJtSr6Ch8wCt/upqoDeQgFZ2jWSmh6wSemyugy+nV2B69yrM2uzJ+kNYtRVvq+KyoptdVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        import hljs from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/es/highlight.min.js';
-        import powershell from "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/powershell.min.js";
-        hljs.registerLanguage('powershell', powershell);
-    </script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/powershell.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <title>AdminTools</title>
 </head>
 <body>
@@ -126,7 +123,7 @@
         <br>
         <p>To load this module into memory on PowerShell startup run:</p>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 if(-not (Test-Path $profile)) { New-Item -Type file -Path $profile -Force }
                 Add-Content -Path $profile -Value 'Import-Module "path\AdminTools\0.1.1\AdminTools.psm1"'
             </code>
@@ -139,7 +136,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 #if machine is online 
                 Get-ComputerTrackingInfo $ComputerName
 
@@ -160,7 +157,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 #if no machine is passed get local machine
                 Get-ComputerUptime 
 
@@ -175,7 +172,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 Get-DirectoryLastWriteTime -Path \\path\to\dir -Recurse
                 # or
                 Get-DirectoryLastWriteTime -Path \\path\to\dir 
@@ -188,7 +185,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 Get-ErrorPrinterJobs -ComputerName printer-server
             </code>
         </pre>
@@ -199,7 +196,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 # retrieve software inventory 
                 $outputs = Get-InstalledSoftware -ComputerName $computers
 
@@ -221,7 +218,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 Get-LightweightResourcesMonitor
             </code>
         </pre>
@@ -232,7 +229,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 Get-MacAddress -ComputerName computer01
                 #returns 00:00:00:00:00
 
@@ -247,7 +244,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 Get-RemoteUsers -ComputerName computer01
             </code>
         </pre>
@@ -258,7 +255,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 Get-UserFoldersToDelete -ComputerName computer01 -Days 120
             </code>
         </pre>
@@ -269,7 +266,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 Install-McAfee computer01
             </code>
         </pre>
@@ -280,7 +277,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 #if the file is saved correctly in the above directory, you can get the ones for today 
                 $computers = Format-ComputersWeekly -Today 
                 $restartResults = Restart-ComputersWeekly $computers -Hours 5
@@ -297,7 +294,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 $restartResults = Restart-NetworkMachine $computers -Hours 5 <br>
             </code>
         </pre>
@@ -308,7 +305,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
@@ -326,7 +323,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
@@ -344,7 +341,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
@@ -362,7 +359,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
@@ -380,7 +377,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
@@ -398,7 +395,7 @@
         <br>
         <h4>Usage</h4>
         <pre>
-            <code class="hljs language-powershell">
+            <code class="pwsh">
                 <br>
                 #if the file is saved correctly in the above directory, you can get the ones for today <br>
                 $computers = Format-ComputersWeekly -Today <br>
