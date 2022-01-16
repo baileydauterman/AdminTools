@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href=".\main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
-    <script src="/docs/highlight/highlight.js"></script>
+    <script>
+        import hljs from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/es/highlight.min.js';
+        import powershell from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/es/languages/powershell.min.js';
+        hljs.registerLanguage('powershell', powershell);
+    </script>
     <title>AdminTools</title>
 </head>
 <body>
