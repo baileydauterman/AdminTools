@@ -5,11 +5,11 @@
 ## Examples
 
 Running this command will return the uptime of remote computer computer01 
-```
+```powershell
 Get-ComputerUptime -ComputerName computer01
 ```
 
 You can run the command without specifying the computer name and it will run locally.
-```
+```powershell
 Get-ComputerUptime
 ```
