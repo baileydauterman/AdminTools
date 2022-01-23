@@ -5,7 +5,7 @@ Gets the path statistics for file path. Includes: FullName, Size(GB), SubFolders
 ## Syntax
 ```powershell
 Get-PathStats
-    [-Path C:\]
+    [-Path "."]
 ```
 
 ## Examples
