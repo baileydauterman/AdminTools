@@ -1,6 +1,6 @@
 # rdp
 
-Gets all dhcp servers connected to the Network Adapters and returns the DNS and IP address.
+Starts a Remote Desktop Connection session with the specified computer.
 
 ## Syntax
 ```powershell
