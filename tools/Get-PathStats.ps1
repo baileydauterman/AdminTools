@@ -1,4 +1,10 @@
-function Get-PathStats($Path="C:\") {
+function Get-PathStats() {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$false,Position=0)]
+        $Path="."
+    )
+
     if($path -eq ".") {
         $path = Get-Location
     }

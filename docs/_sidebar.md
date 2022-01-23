@@ -12,6 +12,8 @@
     - [Get-PathStats](Get-PathStats.md)
     - [Get-UserSessions](Get-UserSessions.md)
     - [Invoke-PingSweep](Invoke-PingSweep.md)
+    - [rdp](rdp.md)
+    - [Resolve-DhcpServer](Resolve-DhcpServer.md)
     - [Start-SCCMActions](Start-SCCMActions.md)
     - [Test-ConnectionRunspace](Test-ConnectionRunspace.md)
     - [Test-ServerReboot](Test-ServerReboot.md)
