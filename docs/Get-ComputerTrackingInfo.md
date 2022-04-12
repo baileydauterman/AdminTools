@@ -10,12 +10,16 @@ Get-ComputerTrackingInfo
 
 ## Examples
 
-Returns path stats for C:\
+For local machine
 ```powershell
 Get-ComputerTrackingInfo
 ```
 
-for specified dir
+For remote machine
 ```powershell
-Get-ComputerTrackingInfo -Path C:\Users
+Get-ComputerTrackingInfo -Computername computer1
+```
+For multiple remote machine
+```powershell
+Get-ComputerTrackingInfo -Computername computer1, computer2
 ```

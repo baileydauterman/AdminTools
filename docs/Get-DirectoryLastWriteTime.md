@@ -11,12 +11,12 @@ Get-DirectoryLastWriteTime
 
 ## Examples
 
-Running this command will return the uptime of remote computer computer01 
+Run on remote machine: 
 ```powershell
 Get-DirectoryLastWriteTime -ComputerName computer01
 ```
 
-You can run the command without specifying the computer name and it will run locally.
+Run locally:
 ```powershell
 Get-DirectoryLastWriteTime
 ```

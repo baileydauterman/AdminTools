@@ -10,7 +10,8 @@ Get-InstalledSoftwareRunspace
 
 ## Examples
 
-Use a list of computers for this command it is inefficient to run on one machine 
+Best if used on a list of machines, for a single machine look at [Get-InstalledSoftware](/docs/Get-InstalledSoftware.md)
 ```powershell
+$computers = Import-Csv .\computers.csv
 Get-InstalledSoftwareRunspace -ComputerName $computers.Name
 ```

@@ -1,6 +1,6 @@
 function Get-InstalledSoftwareRunspace([Parameter(Mandatory=$true)]$ComputerName) {
     $runspacePool = [runspacefactory]::CreateRunspacePool(1,100)
-    runspacePool.Open()
+    $runspacePool.Open()
 
     $runspaces = foreach($computer in $ComputerName) {
         $PSInstance = [powershell]::Create().AddScript({
