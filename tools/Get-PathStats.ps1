@@ -5,6 +5,8 @@ function Get-PathStats() {
         $Path="."
     )
 
+    $ErrorActionPreference = "SilentlyContinue"
+
     if($path -eq ".") {
         $path = Get-Location
     }
@@ -14,9 +16,15 @@ function Get-PathStats() {
         foreach ($folder in $folders) {
             $subfolders = Get-ChildItem -Path $folder.FullName -ErrorAction SilentlyContinue -Force -Recurse
 
+            if ($subfolders.Length -gt 0) {
+                $pathSize = [math]::Round(($subfolders | Measure-Object -Property Length -Sum ).Sum / 1GB,3)
+            } else {
+                $pathSize = 0.0
+            }
+
             [PSCustomObject]@{
                 Name = $folder.FullName
-                "Size(GB)" = [math]::Round(($subfolders | Measure-Object -Property Length -Sum ).Sum / 1GB,3)
+                "Size(GB)" = $pathSize
                 SubFolders = @($subfolders.FullName)
             }
         }  
