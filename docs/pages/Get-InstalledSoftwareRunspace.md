@@ -1,6 +1,6 @@
 # Get-InstalledSoftwareRunspace
 
-Gets the last time a file was written in a directory
+Gets multiple computers installed software
 
 ## Syntax
 ```powershell

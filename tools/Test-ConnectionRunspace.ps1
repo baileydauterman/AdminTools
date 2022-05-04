@@ -14,7 +14,7 @@ function Test-ConnectionRunspace(){
 
     .Example
     PS> $computers = Import-Csv .\a_lot_of_computers.csv
-    PS> Invoke-FastestPingInTheWest -ComputerName $computers
+    PS> Test-ConnectionRunspace -ComputerName $computers
 
     Name        Connection  
     -----       ----------- 
@@ -23,7 +23,7 @@ function Test-ConnectionRunspace(){
     computer4   True        
 
     .Example
-    PS> Invoke-FastestPingInTheWest -ComputerName $computers -MaxPoolSize $computers.Count
+    PS> Test-ConnectionRunspace -ComputerName $computers -MaxPoolSize $computers.Count
 
     Name        Connection      
     -----       -----------     
@@ -32,7 +32,7 @@ function Test-ConnectionRunspace(){
     computer4   True    
 
     .Example
-    PS> Invoke-FastestPingInTheWest -ComputerName $computers -AddMembers "VarToTrack"
+    PS> Test-ConnectionRunspace -ComputerName $computers -AddMembers "VarToTrack"
 
     Name        Connection    VarToTrack  
     -----       -----------  -----------

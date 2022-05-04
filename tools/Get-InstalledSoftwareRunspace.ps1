@@ -6,24 +6,8 @@ function Get-InstalledSoftwareRunspace([Parameter(Mandatory=$true)]$ComputerName
         $PSInstance = [powershell]::Create().AddScript({
             param($Computer)
 
-            $ping = Test-Connection -ComputerName $Computer -Count 1 -Quiet
-            if($ping) {
-                $wsmanstatus =  [bool](Test-WSMan -ComputerName $Computer -ErrorAction SilentlyContinue)
-                if($wsmanstatus) {
-                    $softwares = Get-CimInstance Win32_Product -ComputerName $Computer | Sort-Object Name
-                }
-            } else {
-                $wsmanstatus = $false
-                $softwares = $false
-            }
-
-            [PSCustomObject]@{
-                Name = $Computer
-                Connection = $ping
-                WSMan = $wsmanstatus
-                SoftwareCount = $softwares.Count
-                Softwares = $softwares | SElect-Object Name, Caption, Vendor, Version, IdentifyingNumber
-            }
+            Get-InstalledSoftware -ComputerName $Computer
+            
         }).AddParameter('Computer', $computer)
 
         $PSInstance.RunspacePool = $runspacePool
