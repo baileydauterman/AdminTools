@@ -3,15 +3,10 @@ enum ClickType {
     Right
 }
 
-class PeripheralControl {
-    <#
-    Constructor for the class
-    #>
-    PeripheralControl() {
-        Add-Type -AssemblyName System.Windows.Forms
-        Add-Type -MemberDefinition '[DllImport("user32.dll")] public static extern void mouse_event(int flags, int dx, int dy, int cButtons, int info);' -Name U32 -Namespace Win;
-    }
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -MemberDefinition '[DllImport("user32.dll")] public static extern void mouse_event(int flags, int dx, int dy, int cButtons, int info);' -Name U32 -Namespace Win;
 
+class PeripheralControl {
     [System.__ComObject]$WShell = [System.__ComObject](New-Object -ComObject WScript.Shell)
 
     <#
