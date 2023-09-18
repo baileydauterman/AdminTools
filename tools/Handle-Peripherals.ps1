@@ -45,11 +45,62 @@ function Send-MouseClick {
 function Send-KeyPress {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory)]
+        [Parameter()]
         [string]
-        $Keys
+        $Keys,
+        [Parameter()]
+        [switch]
+        $WithShift,
+        [Parameter()]
+        [switch]
+        $WithControl,
+        [Parameter()]
+        [switch]
+        $WithAlt
     )
 
     $wshell = New-Object -ComObject WScript.Shell
-    $wshell.SendKeys($Keys)
+    $prefix = ""
+
+    if ($WithShift) {
+        $prefix += "+"
+    }
+
+    if ($WithControl) {
+        $prefix += "^"
+    }
+
+    if ($WithAlt) {
+        $prefix += "%"
+    }
+
+    Write-Host "$($prefix)$($Keys)"
+    $wshell.SendKeys("$($prefix)$($Keys)")
+}
+
+function Send-SpecialKeyPress {
+    param (
+        [Parameter()]
+        [ValidateSet("Backspace", "Break", "CapsLock", "Clear", "Delete", "Insert", "LeftArrow", "RightArrow", "UpArrow",
+                     "DownArrow", "End", "Enter", "Escape", "Help", "Home", "NumLock", "PageDown", "PageUp", "PrintScreen",
+                     "ScrollLock", "Tab", "F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12","F13","F14","F15",
+                     "F16")]
+        $SpecialKeys
+    )
+    
+    
+    foreach($key in $SpecialKeys) {
+        switch ($key) {
+            "PageUp"   { $key = "PGUP" }
+            "PageDown" { $key = "PGDN" }
+            "PrintScreen" { $key = "PRTSC"}
+            "LeftArrow" { $key = "LEFT" }
+            "RightArrow" { $key = "RIGHT" }
+            "UpArrow" { $key = "UP" }
+            "DownArrow" { $key = "DOWN" } 
+        }
+
+        $key = "{$key}"
+        $wshell.SendKeys($key)
+    }
 }
