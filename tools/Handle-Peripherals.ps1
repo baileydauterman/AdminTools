@@ -1,4 +1,5 @@
 Add-Type -AssemblyName System.Windows.Forms
+Add-Type -MemberDefinition '[DllImport("user32.dll")] public static extern void mouse_event(int flags, int dx, int dy, int cButtons, int info);' -Name U32 -Namespace Win;
 
 function Get-MousePosition {
     [System.Windows.Forms.Cursor]::Position | Select-Object X, Y
@@ -25,8 +26,6 @@ function Send-MouseClick {
         [ValidateSet("Left", "Right")]
         $ClickType
     )
-
-    Add-Type -MemberDefinition '[DllImport("user32.dll")] public static extern void mouse_event(int flags, int dx, int dy, int cButtons, int info);' -Name U32 -Namespace Win;
 
     switch ($ClickType) {
         "Left"  { [Win.U32]::mouse_event(6, 0, 0, 0, 0); }
