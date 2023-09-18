@@ -1,6 +1,15 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -MemberDefinition '[DllImport("user32.dll")] public static extern void mouse_event(int flags, int dx, int dy, int cButtons, int info);' -Name U32 -Namespace Win;
 
+function Get-Screens {
+    $screens = [System.Windows.Forms.Screen]::AllScreens
+    [pscustomobject]@{
+        Name   = $screens.DeviceName
+        Width  = $screens.Bounds.Width
+        Height = $screens.Bounds.Height
+    }
+}
+
 function Get-MousePosition {
     [System.Windows.Forms.Cursor]::Position | Select-Object X, Y
 }
