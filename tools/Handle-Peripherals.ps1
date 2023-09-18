@@ -1,3 +1,5 @@
+Add-Type -AssemblyName System.Windows.Forms
+
 function Get-MousePosition {
     Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.Cursor]::Position | Select-Object X, Y
@@ -13,7 +15,7 @@ function Move-MousePosition {
         [int]
         $Y
     )
-
+    
     Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($X, $Y)
 }
