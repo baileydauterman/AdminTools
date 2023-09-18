@@ -3,10 +3,13 @@ enum ClickType {
     Right
 }
 
-Add-Type -AssemblyName System.Windows.Forms
-Add-Type -MemberDefinition '[DllImport("user32.dll")] public static extern void mouse_event(int flags, int dx, int dy, int cButtons, int info);' -Name U32 -Namespace Win;
-
 class PeripheralControl {
+    PeripheralControl() {
+        Add-Type -AssemblyName System.Windows.Forms
+        $this.MouseEvent = [WinNative.User32](New-Object -TypeName W.U32)
+    }
+
+    [WinNative.User32]$MouseEvent
     [System.__ComObject]$WShell = [System.__ComObject](New-Object -ComObject WScript.Shell)
 
     <#
@@ -21,8 +24,8 @@ class PeripheralControl {
     #>
     [void]SendMouseClick([ClickType]$ClickType) {
         switch ($ClickType) {
-            [ClickType]::Left  { [Win.U32]::mouse_event(6, 0, 0, 0, 0); }
-            [ClickType]::Right { [Win.U32]::mouse_event(24, 0, 0, 0, 0); }
+            [ClickType]::Left  { $this.MouseEvent::mouse_event(6, 0, 0, 0, 0); }
+            [ClickType]::Right { $this.MouseEvent::mouse_event(24, 0, 0, 0, 0); }
         }
     }
 
