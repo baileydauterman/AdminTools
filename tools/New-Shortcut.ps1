@@ -37,6 +37,6 @@ function New-Shortcut {
     $WshShell = New-Object -comObject WScript.Shell
 
     $Shortcut = $WshShell.CreateShortcut($Path)
-    $Shortcut.TargetPath = $target
+    $Shortcut.TargetPath = $ShortcutTarget
     $Shortcut.Save()
 }
